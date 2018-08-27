@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <unistd.h>
+#include <time.h>       /* clock_t, clock, CLOCKS_PER_SEC */
 
 #include "io_util.h"
 #include "tsp.h"
@@ -49,17 +50,17 @@ int main (int argc, char **argv){
 
     tsp_model.calculateDistances();
 
+    clock_t t;
+    
+    t = clock();
     result = greedy_tsp(tsp_model);
+    t = clock() - t;
 
     double total_distance = result.first;
     std::vector<int> cities = result.second;
 
-    for(auto &e : cities){
-        std::cout << e << ' ';
-    }
-    std::cout << std::endl;
-
-    std::cout << "Total distance: " << total_distance << std::endl;
+    std::cout << "Total distance: " << total_distance 
+        << ". Running time: " << ((float)t)/CLOCKS_PER_SEC << "s\n";
 
 
     return 0;

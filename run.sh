@@ -9,7 +9,12 @@ OUTPUT_DIR="${BASE}/output"
 mkdir -p $OUTPUT_DIR
 
 
+echo "Construtive heuristic" > out;
+echo "" >> out;
+
 ls $INPUT_DIR | while read -r FILE ; do
     echo "Processing ${FILE}";
-    ./source/tsp -f "${INPUT_DIR}/${FILE}" > "${OUTPUT_DIR}/${FILE}.out"
+    echo "${FILE}:" >> out;
+    ./source/tsp -f "${INPUT_DIR}/${FILE}" >> out;
+    echo "" >> out;
 done
