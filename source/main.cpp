@@ -4,7 +4,8 @@
 #include <unistd.h>
 
 #include "io_util.h"
-
+#include "tsp.h"
+#include "greedy.h"
 
 
 int main (int argc, char **argv){
@@ -41,7 +42,23 @@ int main (int argc, char **argv){
     }
 
 
-    build_matrix_from_csv(input_file);
+    TSP tsp_model;
+    read_file(input_file, tsp_model);
+
+    std::pair<double, std::vector<int> > result;
+
+    result = greedy_tsp(tsp_model);
+
+    double total_distance = result.first;
+    std::vector<int> cities = result.second;
+
+    for(auto &e : cities){
+        std::cout << e << ' ';
+    }
+    std::cout << std::endl;
+
+    std::cout << "Total distance: " << total_distance << std::endl;
+
 
     return 0;
 }
