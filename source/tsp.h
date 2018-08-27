@@ -1,17 +1,15 @@
 #ifndef TSP_H
 #define TSP_H
 
-
-// #include <utility>
 #include <vector>
 #include <ostream>
 
 
 class TSP{
 private:
-    int dimension;
     std::string edge_weight_type;
-    std::vector<std::pair<float, float> > cities;
+    std::vector<std::pair<double, double> > cities;
+    std::vector<std::vector<double> > distances;
 
 public:
     TSP();
@@ -20,7 +18,9 @@ public:
 
     void addCity(int index, double  x, double y);
 
-    double distance(int, int);
+    void calculateDistances();
+
+    double get_distance(int, int);
 
     int get_dimension();
 

@@ -1,5 +1,6 @@
 #include "tsp.h"
 #include <cmath>
+#include <iostream>
 
 
 TSP::TSP(){
@@ -8,12 +9,13 @@ TSP::TSP(){
 
 TSP::TSP(int dimension, std::string edge_weight_type){
     this->edge_weight_type = edge_weight_type;
-    this->cities = std::vector<std::pair<float, float> >(dimension);
+    this->cities = std::vector<std::pair<double, double> >(dimension);
+    this->distances = std::vector<std::vector<double> >(dimension, std::vector<double>(dimension));
 }
 
 
 void TSP::addCity(int index, double x, double y){
-    this->cities[index - 1] = std::pair<float, float>(x,y);
+    this->cities[index - 1] = std::pair<double, double>(x,y);
 }
 
 
@@ -34,18 +36,29 @@ double att(std::pair<double, double> coord1, std::pair<double, double> coord2){
 }
 
 
-double TSP::distance(int city1, int city2){
-    if(this->edge_weight_type == "EUC_2D"){
-        return euc_2d(this->cities[city1], this->cities[city2]);
-    }
-    else{
-        return att(this->cities[city1], this->cities[city2]);
-    }
+double TSP::get_distance(int city1, int city2){
+    return this->distances[city1 - 1][city2 - 1];
 }
 
 
 int TSP::get_dimension(){
     return this->cities.size();
+}
+
+
+void TSP::calculateDistances(){
+    int dimension = this->get_dimension();
+    for(int i = 0; i < (dimension - 1); i++){
+        this->distances[i][i] = 0.0;
+        for(int j = (i + 1); j < dimension; j++){
+            double distance = (this->edge_weight_type == "EUC_2D") ?
+                                euc_2d(this->cities[i], this->cities[j]) :
+                                att(this->cities[i], this->cities[j]);
+            this->distances[i][j] = distance;
+            this->distances[j][i] = distance;
+        }
+    }
+    this->distances[dimension - 1][dimension - 1] = 0.0;
 }
 
 

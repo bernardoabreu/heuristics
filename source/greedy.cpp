@@ -10,11 +10,11 @@ std::pair<int, double> min_index(TSP& tsp, int cur_city, std::vector<bool> used)
     while(first_valid < dimension && used[first_valid++]);
 
     next_city = first_valid;
-    min_distance = tsp.distance(cur_city, first_valid);
+    min_distance = tsp.get_distance(cur_city, first_valid);
 
     for(int i = first_valid; i < dimension; i++){
         if(!used[i]){
-            cur_distance = tsp.distance(cur_city, i + 1);
+            cur_distance = tsp.get_distance(cur_city, i + 1);
             if(cur_distance < min_distance){
                 next_city = i + 1;
                 min_distance = cur_distance;
@@ -45,7 +45,7 @@ std::pair<double, std::vector<int> > greedy_tsp(TSP& tsp){
         used[next_city - 1] = true;
         path[i] = next_city;
     }
-    total_distance += tsp.distance(path[dimension - 1], path[0]);
+    total_distance += tsp.get_distance(path[dimension - 1], path[0]);
 
     return std::pair<double, std::vector<int> >(total_distance, path);
 }

@@ -43,9 +43,11 @@ int main (int argc, char **argv){
 
 
     TSP tsp_model;
+    std::pair<double, std::vector<int> > result;
+
     read_file(input_file, tsp_model);
 
-    std::pair<double, std::vector<int> > result;
+    tsp_model.calculateDistances();
 
     result = greedy_tsp(tsp_model);
 
