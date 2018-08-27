@@ -35,17 +35,6 @@ double att(std::pair<double, double> coord1, std::pair<double, double> coord2){
     return (tij < rij) ? (tij + 1) : tij;
 }
 
-
-double TSP::get_distance(int city1, int city2){
-    return this->distances[city1 - 1][city2 - 1];
-}
-
-
-int TSP::get_dimension(){
-    return this->cities.size();
-}
-
-
 void TSP::calculateDistances(){
     int dimension = this->get_dimension();
     for(int i = 0; i < (dimension - 1); i++){

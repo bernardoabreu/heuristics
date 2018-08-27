@@ -1,7 +1,7 @@
 #include "greedy.h"
 #include <iostream>
 
-std::pair<int, double> min_index(TSP& tsp, int cur_city, std::vector<bool> used){
+std::pair<int, double> min_index(const TSP& tsp, int cur_city, const std::vector<bool>& used){
     int next_city = 0;
     int first_valid = 0;
     int dimension = used.size();
@@ -25,7 +25,7 @@ std::pair<int, double> min_index(TSP& tsp, int cur_city, std::vector<bool> used)
 }
 
 
-std::pair<double, std::vector<int> > greedy_tsp(TSP& tsp){
+std::pair<double, std::vector<int> > greedy_tsp(const TSP& tsp){
     int dimension = tsp.get_dimension();
     int next_city = 1;
     double total_distance = 0;

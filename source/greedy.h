@@ -4,6 +4,6 @@
 #include <vector>
 #include "tsp.h"
 
-std::pair<double, std::vector<int> > greedy_tsp(TSP&);
+std::pair<double, std::vector<int> > greedy_tsp(const TSP&);
 
 #endif
