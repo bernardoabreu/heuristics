@@ -1,0 +1,3 @@
+Heurística Construtiva
+
+A heurística construtiva parte de uma cidade qualquer, aqui definida como a primeira cidade, e seleciona a cidade mais próxima da cidade atual. Essa nova cidade é então adicionada à solução e definida como a próxima cidade atual. A partir disso, a cidade mais próxima da nova cidade atual é selecionada dentre as cidades restantes. Esse processo é repetido até que todas as cidades façam parte da solução.
