@@ -1,11 +1,8 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-
 #include <sstream>
-#include <iterator>
-#include <string>
-#include <algorithm>
+
 
 template<typename T>
 T str2num(std::string str){

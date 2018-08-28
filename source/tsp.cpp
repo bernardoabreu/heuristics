@@ -1,6 +1,5 @@
 #include "tsp.h"
 #include <cmath>
-#include <iostream>
 
 
 TSP::TSP(){

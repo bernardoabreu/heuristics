@@ -1,8 +1,7 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include <unistd.h>
-#include <time.h>       /* clock_t, clock, CLOCKS_PER_SEC */
+#include <ctime>       /* clock_t, clock, CLOCKS_PER_SEC */
 
 #include "io_util.h"
 #include "tsp.h"

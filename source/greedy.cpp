@@ -1,5 +1,5 @@
 #include "greedy.h"
-#include <iostream>
+
 
 std::pair<int, double> min_index(const TSP& tsp, int cur_city, const std::vector<bool>& used){
     int next_city = 0;
