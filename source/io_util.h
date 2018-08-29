@@ -8,8 +8,6 @@
 #include "tsp.h"
 #include "util.h"
 
-#define HEADER_SIZE 6
-
 
 void read_file(std::string input_file, TSP& tsp_model);
 

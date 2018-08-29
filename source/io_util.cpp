@@ -6,7 +6,7 @@ void __read_file(std::istream& myfile, TSP& tsp_model){
     int dimension, index;
     double x, y;
 
-    for(int i = 0; i < HEADER_SIZE; i++){
+    do{
         getline(myfile, line);
         std::vector<std::string> v = split<std::vector<std::string> >(line, ':');
 
@@ -16,7 +16,7 @@ void __read_file(std::istream& myfile, TSP& tsp_model){
         else if(v[0] == "EDGE_WEIGHT_TYPE"){
             edge_weight_type = v[1];
         }
-    }
+    }while(line != "NODE_COORD_SECTION");
 
     tsp_model = TSP(dimension, edge_weight_type);
 
