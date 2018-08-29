@@ -3,10 +3,6 @@
 BASE="${HOME}/heuristics"
 
 INPUT_DIR="${BASE}/input_files"
-OUTPUT_DIR="${BASE}/output"
-
-
-mkdir -p $OUTPUT_DIR
 
 
 echo "Construtive heuristic" > out;
