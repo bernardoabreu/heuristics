@@ -34,6 +34,7 @@ double att(std::pair<double, double> coord1, std::pair<double, double> coord2){
     return (tij < rij) ? (tij + 1) : tij;
 }
 
+
 void TSP::calculateDistances(){
     int dimension = this->get_dimension();
     for(int i = 0; i < (dimension - 1); i++){
