@@ -58,10 +58,10 @@ int main (int argc, char **argv){
     double total_distance = result.first;
     std::vector<int> cities = result.second;
 
-    for(auto &e : cities){
-        std::cout << e << ' ';
-    }
-    std::cout << std::endl;
+    // for(auto &e : cities){
+    //     std::cout << e << ' ';
+    // }
+    // std::cout << std::endl;
 
     std::cout << "Total distance: " << total_distance 
         << ". Running time: " << ((float)t)/CLOCKS_PER_SEC << "s\n";
