@@ -53,9 +53,8 @@ int main (int argc, char **argv){
     clock_t t;
     
     t = clock();
-    // result = greedy_tsp(tsp_model);
-    // result = vnd_tsp(tsp_model);
-    result = twoOpt_tsp(tsp_model);
+    result = greedy_tsp(tsp_model);
+    result = vnd_tsp(tsp_model, result.second);
     t = clock() - t;
 
     double total_distance = result.first;
