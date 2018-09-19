@@ -20,6 +20,8 @@ public:
 
     void calculateDistances();
 
+    double tourDistance(const std::vector<int>&) const;
+
     inline double get_distance(int city1, int city2) const { return this->distances[city1 - 1][city2 - 1]; }
 
     inline int get_dimension() const { return this->cities.size(); }

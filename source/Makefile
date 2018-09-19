@@ -23,7 +23,7 @@ LDLIBS =
 
 MAIN = tsp
 
-OBJS = main.o io_util.o greedy.o tsp.o util.o
+OBJS = main.o io_util.o local_search.o greedy.o tsp.o util.o
 
 # The 1st target gets built when you type "make".
 # It’s usually your executable.  ("main" in this case.)
@@ -54,6 +54,8 @@ $(MAIN): $(OBJS)
 main.o: main.cpp io_util.h
 
 io_util.o: io_util.cpp io_util.h tsp.h util.h
+
+local_search.o: local_search.cpp local_search.h tsp.h
 
 greedy.o: greedy.cpp greedy.h tsp.h
 

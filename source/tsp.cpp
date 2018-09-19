@@ -51,6 +51,19 @@ void TSP::calculateDistances(){
 }
 
 
+double TSP::tourDistance(const std::vector<int>& tour) const {
+    int tour_size = tour.size();
+
+    double total_distance = this->get_distance(tour[tour_size - 1], tour[0]);
+
+    for(int i = 0; i < (tour_size - 1); i++){
+        total_distance += this->get_distance(tour[i], tour[i + 1]);
+    }
+
+    return total_distance;
+}
+
+
 std::ostream& operator<<(std::ostream& out, const TSP& tsp){
     int i = 1;
 
