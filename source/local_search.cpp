@@ -1,9 +1,10 @@
 #include "local_search.h"
 #include <numeric>
+#include <algorithm>
 #include <iostream>
 
 
-#define NEIGHBORHOODS 1
+#define NEIGHBORHOODS 2
 
 void twoOptSwap(const std::vector<int>& old_tour, std::vector<int>& new_tour, const int& i, const int& j) {
     int size = old_tour.size();
@@ -72,54 +73,70 @@ std::pair<double, std::vector<int> > twoOpt_tsp(const TSP& tsp){
 }
 
 
-
 void threeOptSwap(const TSP& tsp, const std::vector<int>& old_tour, std::vector<int>& new_tour, const int& i, const int& j, const int& k) {
-    int size = old_tour.size();
+    new_tour = std::vector<int>(old_tour);
 
-    int a = i - 1;
-    int b = i;
-    int c = j - 1;
-    int d = j;
-    int e = k - 1;
-    int f = k;
+    int a = old_tour[i];
+    int b = old_tour[i + 1];
+    int c = old_tour[j];
+    int d = old_tour[j + 1];
+    int e = old_tour[k];
+    int f = old_tour[(k + 1) % old_tour.size()];
 
     int original_dist = tsp.get_distance(a, b) + tsp.get_distance(c, d) + tsp.get_distance(e, f);
 
     int d1 = tsp.get_distance(a, c) + tsp.get_distance(b, d) + tsp.get_distance(e, f);
     if(d1 < original_dist){
-
+        std::reverse(new_tour.begin() + i, new_tour.begin() + j);
+        return;
     }
 
     int d2 = tsp.get_distance(a, b) + tsp.get_distance(c, e) + tsp.get_distance(d, f);
     if(d2 < original_dist){
-
+        std::reverse(new_tour.begin() + j, new_tour.begin() + k);
+        return;
     }
 
     int d3 = tsp.get_distance(f, b) + tsp.get_distance(c, d) + tsp.get_distance(e, a);
     if(d3 < original_dist){
-
+        std::reverse(new_tour.begin() + i, new_tour.begin() + k);
+        std::reverse(new_tour.begin(), new_tour.end());
+        return;
     }
 
     int d4 = tsp.get_distance(a, c) + tsp.get_distance(b, e) + tsp.get_distance(d, f);
     if(d4 < original_dist){
-
+        std::reverse(new_tour.begin() + i, new_tour.begin() + j);
+        std::reverse(new_tour.begin() + j, new_tour.begin() + k);
+        return;
     }
 
     int d5 = tsp.get_distance(f, b) + tsp.get_distance(c, e) + tsp.get_distance(d, a);
     if(d5 < original_dist){
-
+        std::reverse(new_tour.begin() + j, new_tour.begin() + k);
+        std::reverse(new_tour.begin() + i, new_tour.begin() + k);
+        std::reverse(new_tour.begin(), new_tour.end());
+        return;
     }
 
     int d6 = tsp.get_distance(f, c) + tsp.get_distance(b, d) + tsp.get_distance(e, a);
     if(d6 < original_dist){
-
+        std::reverse(new_tour.begin() + i, new_tour.begin() + j);
+        std::reverse(new_tour.begin() + i, new_tour.begin() + k);
+        std::reverse(new_tour.begin(), new_tour.end());
+        return;
     }
 
     int d7 = tsp.get_distance(a, d) + tsp.get_distance(b, e) + tsp.get_distance(c, f);
     if(d7 < original_dist){
-
+        std::reverse(new_tour.begin() + i, new_tour.begin() + j);
+        std::reverse(new_tour.begin() + j, new_tour.begin() + k);
+        std::reverse(new_tour.begin() + i, new_tour.begin() + k);
+        std::reverse(new_tour.begin(), new_tour.end());
+        return;
     }
 
+    return;
 }
 
 
@@ -127,7 +144,7 @@ bool threeOptNeighborhood(const TSP& tsp, const std::vector<int>& old_tour, doub
     // Get tour size
     int size = tsp.get_dimension();
 
-    std::vector<int> new_tour(size);
+    std::vector<int> new_tour(old_tour);
  
     best_distance = tsp.tourDistance(old_tour);
 
@@ -176,9 +193,9 @@ bool find_best_neighbor(const TSP& tsp, int neighbor, const std::vector<int>& ol
     if(neighbor == 0){
         return twoOptNeighborhood(tsp, old_tour, best_distance, best_tour);
     }
-    // else if(neighbor == 1){
-    //     return threeOptNeighborhood(tsp, old_tour, best_distance, best_tour);
-    // }
+    else if(neighbor == 1){
+        return threeOptNeighborhood(tsp, old_tour, best_distance, best_tour);
+    }
 
     return false;
 }
