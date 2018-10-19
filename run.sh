@@ -5,7 +5,7 @@ BASE="${HOME}/heuristics"
 INPUT_DIR="${BASE}/input_files"
 
 
-echo "Construtive heuristic" > out;
+echo "Heuristic" > out;
 echo "" >> out;
 
 ls -1v $INPUT_DIR | while read -r FILE ; do

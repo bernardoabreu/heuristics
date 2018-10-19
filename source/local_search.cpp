@@ -2,7 +2,6 @@
 #include <numeric>
 #include <algorithm>
 
-
 #define NEIGHBORHOODS 2
 
 
@@ -26,7 +25,6 @@ double twoOptSwap(const TSP& tsp, const std::vector<int>& old_tour, const int& i
 bool twoOptNeighborhood(const TSP& tsp, double& best_distance, std::vector<int>& best_tour){
     // Get tour size
     int size = tsp.get_dimension();
-
 
     for (int i = 0; i < size - 1; i++){
         for (int j = i + 1; j < size; j++){
@@ -145,7 +143,6 @@ bool threeOptNeighborhood(const TSP& tsp, double& best_distance, std::vector<int
 }
 
 
-
 std::pair<double, std::vector<int> > threeOpt_tsp(const TSP& tsp, const std::vector<int>& initial_solution){
     std::pair<double, std::vector<int> > solution;
 
@@ -156,7 +153,6 @@ std::pair<double, std::vector<int> > threeOpt_tsp(const TSP& tsp, const std::vec
     while(threeOptNeighborhood(tsp, solution.first, solution.second));
     return solution;
 }
-
 
 
 std::pair<double, std::vector<int> > threeOpt_tsp(const TSP& tsp){
@@ -170,7 +166,6 @@ std::pair<double, std::vector<int> > threeOpt_tsp(const TSP& tsp){
     while(threeOptNeighborhood(tsp, solution.first, solution.second));
     return solution;
 }
-
 
 
 bool find_best_neighbor(const TSP& tsp, int neighbor, double& best_distance, std::vector<int>& best_tour){
