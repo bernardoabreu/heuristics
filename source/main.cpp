@@ -8,6 +8,7 @@
 #include "greedy.h"
 #include "local_search.h"
 #include "tabu_search.h"
+#include "grasp.h"
 
 
 int main (int argc, char **argv){
@@ -54,10 +55,11 @@ int main (int argc, char **argv){
     clock_t t;
     
     t = clock();
-    result = greedy_tsp(tsp_model);
+    // result = greedy_tsp(tsp_model);
+    result = grasp_tsp(tsp_model, 100, 0.5);
     // result = vnd_tsp(tsp_model, result.second);
     // result = tabu_tsp(tsp_model, 100, 100);
-    result = tabu_tsp(tsp_model, result.second, 100, 100);
+    // result = tabu_tsp(tsp_model, result.second, 100, 100);
     t = clock() - t;
 
     double total_distance = result.first;
