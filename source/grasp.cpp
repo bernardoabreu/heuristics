@@ -55,22 +55,17 @@ std::pair<double, std::vector<int> > random_greedy_tsp(const TSP& tsp, double al
 
 
 std::pair<double, std::vector<int> > grasp_tsp(const TSP& tsp, int max_iterations, double alpha){
-    // srand(time(NULL));
+    srand(time(NULL));
 
     std::pair<double, std::vector<int> > solution, max_solution;
     max_solution = random_greedy_tsp(tsp, alpha);
 
     for(int i = 0; i < max_iterations; i++){
-        srand(i);
-        // std::cout << "i: " << i << std::endl;
         solution = random_greedy_tsp(tsp, alpha);
-        // std::cout << "Finished random_greedy_tsp" << std::endl;
         solution = vnd_tsp(tsp, solution.second);
-        // std::cout << "Finished vnd_tsp" << std::endl;
         if(solution.first < max_solution.first){
             max_solution = solution;
         }
-        // std::cout << "Updated best solution" << std::endl;
     }
 
     return max_solution;
