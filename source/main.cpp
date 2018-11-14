@@ -9,7 +9,7 @@
 #include "local_search.h"
 #include "tabu_search.h"
 #include "grasp.h"
-
+#include "iterated_local_search.h"
 
 int main (int argc, char **argv){
     char *cvalue = NULL;
@@ -56,7 +56,7 @@ int main (int argc, char **argv){
     
     t = clock();
     // result = greedy_tsp(tsp_model);
-    result = grasp_tsp(tsp_model, 100, 0.5);
+    result = ils_tsp(tsp_model, 100);
     // result = vnd_tsp(tsp_model, result.second);
     // result = tabu_tsp(tsp_model, 100, 100);
     // result = tabu_tsp(tsp_model, result.second, 100, 100);

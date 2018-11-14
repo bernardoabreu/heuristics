@@ -1,6 +1,7 @@
 #include "tabu_search.h"
-#include <algorithm>
 #include "local_search.h"
+#include <algorithm>
+#include <numeric>
 
 
 bool twoOptTabu(const TSP& tsp, double& best_distance, std::vector<int>& best_tour, TabuList& tabu_list){
